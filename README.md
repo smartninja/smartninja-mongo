@@ -37,9 +37,11 @@ If your program runs in **some other production environment**, just set the `CUS
 
 SmartNinja Mongo's only task is to get you the right Mongo client:
 
-	from smartninja_mongo.connection import MongoClient
+```python
+from smartninja_mongo.connection import MongoClient
 
-	connection = MongoClient('mongodb://ds012345.mlab.com:56789/')
+connection = MongoClient('mongodb://ds012345.mlab.com:56789/')
+```
 
 If your Python program runs on Heroku (for example), you'll get back a `MongoClient` from the `pymongo` library which has a connection to the production MongoDB database (in this case the mLab's Mongo database).
 
@@ -49,15 +51,17 @@ Even if TinyDB is used on localhost instead of the MongoDB, you can write your c
 
 See the following examples:
 
-	db = connection.my_database
-	
-	collection = db.users
-	
-	user_id = collection.insert_one({"first_name": "Matej", "last_name": "Ramuta", "year_born": 1987}).inserted_id
-	
-	user_info = collection.find_one({"_id": user_id})
-	
-	print(user_info)
+```python
+db = connection.my_database
+
+collection = db.users
+
+user_id = collection.insert_one({"first_name": "Matej", "last_name": "Ramuta", "year_born": 1987}).inserted_id
+
+user_info = collection.find_one({"_id": user_id})
+
+print(user_info)
+```
 
 ### More usage examples
 
