@@ -40,7 +40,7 @@ SmartNinja Mongo's only task is to get you the right Mongo client:
 ```python
 from smartninja_mongo.connection import MongoClient
 
-connection = MongoClient('mongodb://ds012345.mlab.com:56789/')
+client = MongoClient('mongodb://ds012345.mlab.com:56789/')
 ```
 
 If your Python program runs on Heroku (for example), you'll get back a `MongoClient` from the `pymongo` library which has a connection to the production MongoDB database (in this case the mLab's Mongo database).
@@ -52,7 +52,7 @@ Even if TinyDB is used on localhost instead of the MongoDB, you can write your c
 See the following examples:
 
 ```python
-db = connection.my_database
+db = client.my_database
 
 collection = db.users
 

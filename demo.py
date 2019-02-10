@@ -1,8 +1,8 @@
 from smartninja_mongo.connection import MongoClient
 
-connection = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb://localhost:27017/')
 
-db = connection.my_database
+db = client.my_database
 
 collection = db.users
 

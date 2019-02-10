@@ -11,7 +11,7 @@ else:
 
     class MongoClient(TinyMongoClient):
         def __init__(self, host=None, port=None, document_class=dict, tz_aware=None, connect=None, **kwargs):
-            if "://" in host:  # if it's URL
+            if not host or "://" in host:  # if it's URL
                 host = "localhost.db"
 
             super().__init__(foldername=host)
