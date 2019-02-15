@@ -1,6 +1,6 @@
 # SmartNinja Mongo
 
-A simple wrapper for MongoDB (`pymongo`) and TinyDB (`tinymongo`).
+A simple **wrapper** for MongoDB (`pymongo`) and TinyDB (`tinymongo`). It also provides a lightweight **object-document mapper** (ODM).
 
 Use it if you don't want to (or can't) install MongoDB locally.
 
@@ -70,6 +70,44 @@ For more usage examples see PyMongo docs: [https://api.mongodb.com/python/curren
 ### Beware
 
 There might be some incompatibilities between TinyMongo and PyMongo. Make sure to also check the [TinyMongo docs](https://tinydb.readthedocs.io/en/latest/index.html) to identify the problem if weird behavior occurs.
+
+### ODM
+
+MongoDB accepts data as dictionaries and also returns data as dicts. If you'd like to use model classes in your project, you can use a base model from the SmartNinja Mongo library:
+
+```python
+from smartninja_mongo.odm import Model
+
+
+class User(Model):
+    def __init__(self, first_name, **kwargs):
+        self.first_name = first_name
+
+        super().__init__(**kwargs)
+```
+
+Make sure to add `**kwargs` as a parameter and call `super()` at the end of the `__init__` method.
+
+Alternatively you can skip `__init__` completely
+
+```python
+class User(Model):
+	pass
+```
+
+#### The benefit of using SmartNinja Mongo ODM `Model`
+
+The main benefit is that you get a method called: `convert_dict_to_object()`:
+
+```python
+user_info = collection.find_one({"_id": user_id})
+
+user_obj = User.convert_dict_to_object(data_dict=user_info)
+
+print(user_obj.first_name)
+```
+
+This `Model` class provides a very lightweight and simple **object-document mapping** (ODM).
 
 ## Contributions
 
