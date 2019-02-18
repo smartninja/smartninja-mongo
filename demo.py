@@ -1,3 +1,5 @@
+import datetime
+
 from smartninja_mongo.connection import MongoClient
 from smartninja_mongo.odm import Model
 
@@ -7,7 +9,8 @@ db = client.my_database
 
 collection = db.users
 
-user_id = collection.insert_one({"first_name": "Matej", "last_name": "Ramuta", "year_born": 1987}).inserted_id
+user_id = collection.insert_one({"first_name": "Matej", "last_name": "Ramuta", "year_born": 1987,
+                                 "created": datetime.datetime.now()}).inserted_id
 
 user_info = collection.find_one({"_id": user_id})
 
@@ -29,3 +32,5 @@ class User(Model):
 print("Let's convert user_dict into an object")
 user_obj = User.convert_dict_to_object(data_dict=user_info)
 print(user_obj.first_name)
+
+# collection.delete_many({})

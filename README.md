@@ -56,7 +56,7 @@ db = client.my_database
 
 collection = db.users
 
-user_id = collection.insert_one({"first_name": "Matej", "last_name": "Ramuta", "year_born": 1987}).inserted_id
+user_id = collection.insert_one({"first_name": "Matej", "last_name": "Ramuta", "year_born": 1987, "created": datetime.datetime.now()}).inserted_id
 
 user_info = collection.find_one({"_id": user_id})
 
