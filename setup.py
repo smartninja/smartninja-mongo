@@ -10,7 +10,7 @@ setuptools.setup(
     author_email='matej.ramuta@gmail.com',
     packages=['smartninja_mongo'],
     install_requires=["tinymongo", "pymongo"],
-    version='0.4',
+    version='0.5',
     license='MIT',
     description='SmartNinja Mongo - a simple MongoDB & TinyDB wrapper.',
     long_description=long_description,

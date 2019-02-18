@@ -1,5 +1,6 @@
 import datetime
 
+from smartninja_mongo.bson import ObjectId
 from smartninja_mongo.connection import MongoClient
 from smartninja_mongo.odm import Model
 
@@ -33,4 +34,13 @@ print("Let's convert user_dict into an object")
 user_obj = User.convert_dict_to_object(data_dict=user_info)
 print(user_obj.first_name)
 
-# collection.delete_many({})
+print("-----------")
+
+user_id_bson = ObjectId(user_id)
+print(user_id_bson)
+print(type(user_id_bson))
+user_info = collection.find_one({"_id": ObjectId(user_id)})
+
+print(user_info)
+
+collection.delete_many({})
