@@ -58,10 +58,13 @@ collection = db.users
 
 user_id = collection.insert_one({"first_name": "Matej", "last_name": "Ramuta", "year_born": 1987, "created": datetime.datetime.now()}).inserted_id
 
-user_info = collection.find_one({"_id": user_id})
+from smartninja_mongo.bson import ObjectId
+user_info = collection.find_one({"_id": ObjectId(user_id)})
 
 print(user_info)
 ```
+
+As you can see, the `bson.ObjectId` is needed when searching by ID.
 
 ### More usage examples
 
@@ -100,7 +103,7 @@ class User(Model):
 The main benefit is that you get a method called: `convert_dict_to_object()`:
 
 ```python
-user_info = collection.find_one({"_id": user_id})
+user_info = collection.find_one({"_id": ObjectId(user_id)})
 
 user_obj = User.convert_dict_to_object(data_dict=user_info)
 
